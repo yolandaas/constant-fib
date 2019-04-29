@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[122]:
-
-
 # (c) Yolanda Shen and Saketh Kollu
-
-
-# In[2]:
-
 
 # Run this cell to set up the notebook, but please don't change it.
 
@@ -26,10 +19,6 @@ plt.style.use('fivethirtyeight')
 import warnings
 warnings.simplefilter('ignore', FutureWarning)
 
-
-# In[3]:
-
-
 # Binet's Formula for the nth term of the Fibonacci sequence
 def fib_binet(n):
     PHI = 1.618033988749895
@@ -37,13 +26,7 @@ def fib_binet(n):
     return ((PHI ** n) - ((-PHI) ** (-n))) / root5
 
 
-# In[4]:
-
-
 fib_binet(10)
-
-
-# In[5]:
 
 
 # Recursive formula for the nth term of the Fibonacci sequence
@@ -54,13 +37,9 @@ def fib_recursive(n):
         return fib_recursive(n - 1) + fib_recursive(n - 2)
 
 
-# In[6]:
-
 
 fib_recursive(10)
 
-
-# In[7]:
 
 
 # Iterative formula for the nth term of the Fibonacci sequence
@@ -75,13 +54,11 @@ def fib_iterative(n):
     return current
 
 
-# In[12]:
 
 
 fib_iterative(10)
 
 
-# In[13]:
 
 
 # Calculates the execution time in milliseconds of a function 'f' with input 'n'
@@ -94,28 +71,24 @@ def execution_time(f, n):
     return RV, delta * scale
 
 
-# In[14]:
 
 
 execution_time(fib_binet, 30)
 
 
-# In[15]:
 
 
 execution_time(fib_recursive, 30)
 
 
-# In[16]:
 
 
 execution_time(fib_iterative, 30)
 
 
-# In[22]:
 
 
-# This cell calculates the value and the execution time of all three functions  for all the values in the range 'n'
+# This part calculates the value and the execution time of all three functions  for all the values in the range 'n'
 
 n = np.arange(35)
 
@@ -158,7 +131,6 @@ fibonacci = fibonacci.with_columns("calculationDelta Binet/Recursive", calculati
 fibonacci.show()
 
 
-# In[111]:
 
 
 # Graph for the Execution Time of all three functions
@@ -166,21 +138,14 @@ fibonacci.show()
 fibonacci.select("n", "Binet Time", "Recursive Time", "Iterative Time").scatter("n")
 
 
-# In[112]:
 
 
 # The Recursive Formula has an exponential run time, but you can see that the Iterative and Binet times are very close. Let's take a closer look at the two.
-
-
-# In[113]:
-
 
 # Graph for the Execution Time of Binet's Formula and the Iterative function
 
 fibonacci.select("n", "Binet Time", "Iterative Time").scatter("n")
 
-
-# In[114]:
 
 
 # Interestingly, Binet's Formula seems to take longer when n < 18. This makes sense, because Binet's Formula must run through the entire 
@@ -194,21 +159,16 @@ fibonacci.select("n", "Binet Time", "Iterative Time").scatter("n")
 # Iterative = linear run time
 
 
-# In[115]:
-
 
 # Graph of the Difference in Execution Time between all three formulas
 
 fibonacci.select("n", "timeDelta Binet/Recursive", "timeDelta Binet/Iterative", "timeDelta Iterative/Recursive").scatter("n")
 
 
-# In[116]:
-
 
 # We can clearly tell that the time difference between Binet/Iterative functions is much smaller between either and the Recursive function.
 
 
-# In[117]:
 
 
 # Graph for the accuracy of the three functions
@@ -216,21 +176,14 @@ fibonacci.select("n", "timeDelta Binet/Recursive", "timeDelta Binet/Iterative", 
 fibonacci.select("n", "Binet Calculation", "Recursive Calculation", "Iterative Calculation").scatter("n")
 
 
-# In[118]:
-
 
 # All three seem to be overlapping in this case. Let's see how accurate they are in relation to each other.
 
-
-# In[119]:
 
 
 # Graph of the Difference in Accuracy
 
 fibonacci.select("n", "calculationDelta Binet/Recursive", "calculationDelta Binet/Iterative", "calculationDelta Iterative/Recursive").scatter("n")
-
-
-# In[120]:
 
 
 # Notice how fib_binet(0) evaluates to 0 because the numerator becomes (1 - 1), when it should be 1. 
@@ -239,10 +192,6 @@ fibonacci.select("n", "calculationDelta Binet/Recursive", "calculationDelta Bine
 # Otherwise, the difference in accuracy is not that large. 
 # Iterative/Recursive will always be zero difference in calculation, but since we are using a rounded version of Phi for Binet's Formula, there will always be a marginal error.
 # At the same time, this error is not noticeable for numbers below 50 or so.
-
-
-# In[121]:
-
 
 ##############################################################################################################
 # Conclusion:
